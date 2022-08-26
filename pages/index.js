@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Banner from '../components/banner'
+import Card from '../components/card'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -22,6 +23,8 @@ export default function Home() {
         <div className={styles.heroImage}>
           <Image src="/static/hero-image.png" width={700} height={400}/>
         </div>
+
+        <Card name="Hello Coffee" imageUrl="/static/hero-image.png" href="/coffee/1" />
       </main>
       
 
