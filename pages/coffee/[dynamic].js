@@ -7,11 +7,15 @@ import coffeeStoreData from '../../data/coffee-stores.json';
 import styles from '../../styles/coffe-store.module.css';
 import cls from 'classnames'; 
 
+import { fetchCoffeeStores } from '../../lib/coffee-stores';
+
+
 export async function getStaticPaths() {
-    const paths = coffeeStoreData.map((coffeeStore) => {
+    const coffeeStores = await fetchCoffeeStores();
+    const paths = coffeeStores.map((coffeeStore) => {
         return {
             params: { 
-                dynamic: coffeeStore.id.toString(),
+                dynamic: coffeeStore.fsq_id.toString(),
             },
         };
     })
@@ -21,14 +25,17 @@ export async function getStaticPaths() {
     }
   }
 
-  export async function getStaticProps(staticProps) {
+export async function getStaticProps(staticProps) {
+    const coffeeStores = await fetchCoffeeStores();
     const params = staticProps.params;
     console.log("params", params);
 
+
+
     return {
       props: {
-        coffeeStore: coffeeStoreData.find((coffeeStore) => {
-        return coffeeStore.id.toString() === params.dynamic;
+        coffeeStore: coffeeStores.find((coffeeStore) => {
+        return coffeeStore.fsq_id.toString() === params.dynamic;
       }),
      },
     };
