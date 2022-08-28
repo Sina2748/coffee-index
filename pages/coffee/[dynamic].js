@@ -48,7 +48,7 @@ const hello = function(props) {
         return<div>Loading...</div>
     };
     
-    const { address, name, neighbourhood, imgUrl } = props.coffeeStore;
+    const { location, name, neighbourhood, imgUrl } = props.coffeeStore;
     const handleUpvoteButton = () => {
         console.log("handle upvote!"); 
     }
@@ -70,14 +70,14 @@ const hello = function(props) {
                 <Image src={imgUrl}  width={600} height={360} className={styles.storeImg} alt={name}></Image>
             </div>
             <div className={cls("glass", styles.col2)}>
-                <div className={styles.iconWrapper}>
+                {location.neighborhood[0] && <div className={styles.iconWrapper}>
                     <Image src="/static/icons/nearMe.svg" width="24" height="24"></Image>                
-                    <p className={styles.text}>{neighbourhood}</p>
-                </div>
+                    <p className={styles.text}>{location.neighborhood[0]}</p>
+                </div>}
 
                 <div className={styles.iconWrapper}>
                     <Image src="/static/icons/places.svg" width="24" height="24"></Image>                
-                    <p className={styles.text}>{address}</p>
+                    <p className={styles.text}>{location.address}</p>
                 </div>
 
                 <div className={styles.iconWrapper}>
