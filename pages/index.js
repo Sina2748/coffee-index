@@ -5,23 +5,44 @@ import Banner from '../components/banner'
 import Card from '../components/card'
 
 import styles from '../styles/Home.module.css'
-import coffeeStoresData from '../data/coffee-stores.json'
+// import coffeeStoresData from '../data/coffee-stores.json'
 
 //
 export async function getStaticProps(context) {
+
+  const options = {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      Authorization: 'fsq37L1D7o6jeaWE6iHM57FRqawe3okHFjVcG3uRyowzn2I='
+    }
+  };
+  
+  let coffeeStoresData = [];
+  const response = await fetch('https://api.foursquare.com/v3/places/search?query=coffee&ll=41.8781%2C-87.6298&exclude_all_chains=false&fields=name%2Cfsq_id%2Cphotos&limit=6', options)
+
+  const data = await response.json();
+  console.log(data);
+
+    // .then(response => response.json())
+    // .then(response => console.log(response))
+    // .catch(err => console.error(err));
+
+  
+
   return {
     props: {
-      coffeeStores: coffeeStoresData
+      coffeeStores: data.results,
     }, // will be passed to the page component as props
   }
 }
 
 //
 export default function Home(props) {
-  console.log("props", props);
+  console.log("props from fsq!!", props);
 
   const handleOnClickBtnClick = () => {
-    console.log("hi Banner button")
+    // console.log("hi Banner button")
   }  
 
   return (
@@ -42,7 +63,7 @@ export default function Home(props) {
         <h2 className={styles.hearding2}>Torono Coffee Stores</h2>
         <div className={styles.cardLayout}>
           {props.coffeeStores.map((coffeeStore) => {
-              return  <Card key={coffeeStore.id} name={coffeeStore.name} imageUrl={coffeeStore.imgUrl} href={`/coffee/${coffeeStore.id}`} className={styles.card}/>
+              return  <Card key={coffeeStore.fsq_id} name={coffeeStore.name} imageUrl={coffeeStore.url} href={`/coffee/${coffeeStore.id}`} className={styles.card}/>
           })
           }         
         </div>
