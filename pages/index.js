@@ -12,7 +12,7 @@ import { fetchCoffeeStores } from '../lib/coffee-stores';
 //
 export async function getStaticProps(context) {
   const coffeeStores = await fetchCoffeeStores();
-
+  console.log(coffeeStores);
   return {
     props: {
       coffeeStores,
@@ -20,9 +20,10 @@ export async function getStaticProps(context) {
   }
 }
 
+
 //
 export default function Home(props) {
-  console.log("props from fsq!!", props);
+  // console.log("props from fsq!!", props);
 
   const handleOnClickBtnClick = () => {
     // console.log("hi Banner button")
@@ -46,7 +47,7 @@ export default function Home(props) {
         <h2 className={styles.hearding2}>Torono Coffee Stores</h2>
         <div className={styles.cardLayout}>
           {props.coffeeStores.map((coffeeStore) => {
-              return  <Card key={coffeeStore.fsq_id} name={coffeeStore.name} imageUrl={coffeeStore.url} href={`/coffee/${coffeeStore.fsq_id}`} className={styles.card}/>
+              return  <Card key={coffeeStore.fsq_id} name={coffeeStore.name} imageUrl={coffeeStore.imgUrl} href={`/coffee/${coffeeStore.fsq_id}`} className={styles.card}/>
           })
           }         
         </div>

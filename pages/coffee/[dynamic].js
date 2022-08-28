@@ -62,7 +62,7 @@ const hello = function(props) {
             <div className={styles.col1}>
 
                 <div className={styles.backToHomeLink}>
-                    <Link href="/"><a>Back to home</a></Link>  
+                    <Link href="/"><a>← Back to home</a></Link>  
                 </div>                      
                 <div className={styles.nameWrapper}>
                     <h1 className={styles.name}>{name}</h1>

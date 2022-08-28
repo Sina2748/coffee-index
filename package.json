@@ -11,8 +11,10 @@
   "dependencies": {
     "classnames": "^2.3.1",
     "next": "12.2.5",
+    "node-fetch": "^3.2.10",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "unsplash-js": "^7.0.15"
   },
   "devDependencies": {
     "eslint": "8.21.0",
