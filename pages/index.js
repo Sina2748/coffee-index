@@ -9,6 +9,7 @@ import styles from '../styles/Home.module.css';
 import { fetchCoffeeStores } from '../lib/coffee-stores';
 
 import useTrackLocation from '../hooks/use-track-location';
+import { useEffect } from 'react';
 
 
 // 
@@ -18,7 +19,7 @@ import useTrackLocation from '../hooks/use-track-location';
 //
 export async function getStaticProps(context) {
   const coffeeStores = await fetchCoffeeStores();
-  console.log(coffeeStores);
+  console.log({coffeeStores});
   return {
     props: {
       coffeeStores,
@@ -26,15 +27,38 @@ export async function getStaticProps(context) {
   }
 }
 
+//
 
 //
-export default function Home(props) {
- 
-  
-  console.log("props from fsq!!", props);
+export default function Home(props) {  
+  console.log("props from getStaticProps!!", props);
 
   const {handleTrackLocation, latLong, locationErrorMsg, inFindingLocation} = useTrackLocation();
-  console.log({ latLong, locationErrorMsg, inFindingLocation});
+  // console.log({ latLong, locationErrorMsg, inFindingLocation});
+
+  useEffect(  () => {
+
+
+    
+    async function fetchData() {
+    if(latLong) {
+      try{
+        const fetchCoffeeStoresV = await fetchCoffeeStores(latLong, 30);
+        console.log("coffee stores from fetchCoffeeStores!!", fetchCoffeeStoresV);
+        
+      }
+      catch(error) { 
+        // set error
+        console.log({error});
+      }
+    }
+    console.log("kkkkk:",latLong);
+  }
+
+  fetchData();
+  },[latLong])
+
+
 
   const handleOnClickBtnClick = () => {
     console.log("hi banner button");
