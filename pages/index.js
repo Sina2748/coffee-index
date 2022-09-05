@@ -9,7 +9,7 @@ import styles from '../styles/Home.module.css';
 import { fetchCoffeeStores } from '../lib/coffee-stores';
 
 import useTrackLocation from '../hooks/use-track-location';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 // 
@@ -36,20 +36,22 @@ export default function Home(props) {
   const {handleTrackLocation, latLong, locationErrorMsg, inFindingLocation} = useTrackLocation();
   // console.log({ latLong, locationErrorMsg, inFindingLocation});
 
+  const [coffeeStores, setCoffeeStores] = useState('');
+  const [storeError, setStoreError] = useState(null);
+
   useEffect(  () => {
-
-
     
     async function fetchData() {
     if(latLong) {
       try{
         const fetchCoffeeStoresV = await fetchCoffeeStores(latLong, 30);
         console.log("coffee stores from fetchCoffeeStores!!", fetchCoffeeStoresV);
-        
+        setCoffeeStores(fetchCoffeeStoresV);
       }
       catch(error) { 
         // set error
         console.log({error});
+        setStoreError(error.message);
       }
     }
     console.log("kkkkk:",latLong);
@@ -79,12 +81,27 @@ export default function Home(props) {
         buttonText={inFindingLocation ? "Locating..." : "View Stores Nearby"} 
         handleOnClick={handleOnClickBtnClick}
                   />  
-
         {locationErrorMsg && <p> Something went wrong: {locationErrorMsg} </p>}   
+        {storeError && <p> Something went wrong: {storeError} </p>}
 
         <div className={styles.heroImage}>
           <Image src="/static/hero-image.png" width={700} height={400}/>
         </div>
+
+        { coffeeStores.length > 0 && 
+        <>
+        <h2 className={styles.hearding2}>Coffee Stores Near You:</h2>
+        <div className={styles.cardLayout}>
+          {coffeeStores.map((coffeeStore) => {
+              return  <Card key={coffeeStore.fsq_id} name={coffeeStore.name} imageUrl={coffeeStore.imgUrl} href={`/coffee/${coffeeStore.fsq_id}`} className={styles.card}/>
+          })
+          }         
+        </div>
+        </>
+        }
+
+
+
         { props.coffeeStores.length > 0 && 
         <>
         <h2 className={styles.hearding2}>Torono Coffee Stores</h2>
@@ -96,8 +113,8 @@ export default function Home(props) {
         </div>
         </>
         }
-      </main>
-      
+
+      </main>      
 
       <footer className={styles.footer}>
 
