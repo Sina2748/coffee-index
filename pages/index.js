@@ -9,7 +9,8 @@ import styles from '../styles/Home.module.css';
 import { fetchCoffeeStores } from '../lib/coffee-stores';
 
 import useTrackLocation from '../hooks/use-track-location';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { ACTION_TYPES, StoreContext } from './_app';
 
 
 // 
@@ -33,11 +34,15 @@ export async function getStaticProps(context) {
 export default function Home(props) {  
   console.log("props from getStaticProps!!", props);
 
-  const {handleTrackLocation, latLong, locationErrorMsg, inFindingLocation} = useTrackLocation();
+  const {handleTrackLocation, locationErrorMsg, inFindingLocation} = useTrackLocation();
   // console.log({ latLong, locationErrorMsg, inFindingLocation});
 
-  const [coffeeStores, setCoffeeStores] = useState('');
+  // const [coffeeStores, setCoffeeStores] = useState('');
   const [storeError, setStoreError] = useState(null);
+
+  const {dispatch, state } = useContext(StoreContext);
+
+  const { coffeeStores, latLong } = state;
 
   useEffect(  () => {
     
@@ -46,7 +51,13 @@ export default function Home(props) {
       try{
         const fetchCoffeeStoresV = await fetchCoffeeStores(latLong, 30);
         console.log("coffee stores from fetchCoffeeStores!!", fetchCoffeeStoresV);
-        setCoffeeStores(fetchCoffeeStoresV);
+        // setCoffeeStores(fetchCoffeeStoresV);
+        dispatch({
+          type: ACTION_TYPES.SET_COFFEE_STORES,
+          payload: {
+            coffeeStores: fetchCoffeeStoresV,
+          },
+        })
       }
       catch(error) { 
         // set error
@@ -64,7 +75,7 @@ export default function Home(props) {
 
   const handleOnClickBtnClick = () => {
     console.log("hi banner button");
-    
+     
     handleTrackLocation();
   }  
 
