@@ -9,7 +9,7 @@ import cls from 'classnames';
 
 import { fetchCoffeeStores } from '../../lib/coffee-stores';
 import { useContext, useEffect, useState } from 'react';
-import { StoreContext } from '../_app';
+import { StoreContext } from '../../store/store-context';
 import { isEmpty } from '../../utils';
 
 
