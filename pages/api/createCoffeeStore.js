@@ -10,7 +10,7 @@ const createCoffeeStore = async (req, res) => {
         if (req.method === "POST" ) {
             // find record
             const findCoffeeStoreRecords = await table.select({
-                filterByFormula: `id="0"`
+                filterByFormula: `id="3"`
             }).firstPage();
 
             console.log({findCoffeeStoreRecords});
@@ -25,7 +25,25 @@ const createCoffeeStore = async (req, res) => {
                 res.json(records);
             } else {
             // creat a record
-            res.json({ message: "create a record" })
+            const createRecords = await table.create([
+                {
+                    fields: {
+                        id: "3",
+                        name: "My Cofffee Store",
+                        address: "my address is this",
+                        neighbourhood: "some neighbourhood",
+                        votting: 300, 
+                        imgUrl: "http://myimages.com",
+                    }
+                }
+            ])
+
+            const records = createRecords.map(record => {
+                return {
+                    ...record.fields,
+                }
+            })
+            res.json({ records })
 
             } 
         }
