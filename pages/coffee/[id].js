@@ -61,21 +61,50 @@ export async function getStaticProps(staticProps) {
     }
   } = useContext(StoreContext)
 
-  console.log({coffeeStores});
+  const handleCreateCoffeeStore = async (coffeeStore) => {
+    console.log("coffeeStore!!!!!!!!!!!!!", coffeeStore);
+    try {
+      
+      // const id,  name, votting, imgUrl, neighbourhood, address = coffeeStore.fsq_id;
 
-  console.log("coffeeStoresssssss.length > 0 :", coffeeStores.length > 0)
+      const response = await fetch('/api/createCoffeeStore', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id: coffeeStore.fsq_id,
+            name: coffeeStore.name,
+            votting: 0,
+            imgUrl: coffeeStore.imgUrl,
+            neighbourhood: coffeeStore.neighbourhood || "",
+            address: coffeeStore.location.address || "",
+            }),
+      });
+      const dbCoffeeStore = response.json();
+      console.log("dbCoffeeStore!!!!!!!!!!!!!!!", dbCoffeeStore);
+
+    } catch(err) {
+      console.error('Error creating coffee store', err); 
+    }
+  }
 
   useEffect(() => {
     if(isEmpty(initialProps.coffeeStore)) {
        if(coffeeStores.length > 0) {
-        const findCoffeeStoreById = coffeeStores.find((coffeeStore) => {
+        const coffeeStoreFromContext = coffeeStores.find((coffeeStore) => {
           return coffeeStore.fsq_id.toString() === id;
         });
-        setCoffeeStore(findCoffeeStoreById);
-        console.log({findCoffeeStoreById});
+        if (coffeeStoreFromContext) {
+          setCoffeeStore(coffeeStoreFromContext);
+          handleCreateCoffeeStore(coffeeStoreFromContext);
+        }
+
        }
+    } else {
+      handleCreateCoffeeStore(initialProps.coffeeStore)
     }
-  },[id]);
+  },[id, initialProps, initialProps.coffeeStore]);
 
 
 
