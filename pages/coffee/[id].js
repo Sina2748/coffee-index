@@ -34,7 +34,6 @@ export async function getStaticPaths() {
 export async function getStaticProps(staticProps) {
     const coffeeStores = await fetchCoffeeStores();
     const params = staticProps.params;
-    console.log("params", params);
 
     const findCoffeeStoreById = coffeeStores.find((coffeeStore) => {
         return coffeeStore.fsq_id.toString() === params.id;
@@ -54,7 +53,7 @@ export async function getStaticProps(staticProps) {
     }
 
     const id = router.query.id;  
-    console.log({id});
+
 
     const [coffeeStore, setCoffeeStore] = useState(initialProps.coffeeStore)
 
@@ -65,7 +64,7 @@ export async function getStaticProps(staticProps) {
   } = useContext(StoreContext)
 
   const handleCreateCoffeeStore = async (coffeeStore) => {
-    console.log("coffeeStore!!!!!!!!!!!!!", coffeeStore);
+
     try {
       
       // const id,  name, votting, imgUrl, neighbourhood, address = coffeeStore.fsq_id;
@@ -85,7 +84,7 @@ export async function getStaticProps(staticProps) {
             }),
       });
       const dbCoffeeStore = response.json();
-      console.log("dbCoffeeStore!!!!!!!!!!!!!!!", dbCoffeeStore);
+
 
     } catch(err) {
       console.error('Error creating coffee store', err); 
@@ -111,7 +110,7 @@ export async function getStaticProps(staticProps) {
 
     const { name,   address, location, neighbourhood, imgUrl } = coffeeStore;
 
-    const [votingCount, setVotingCount] = useState(1);
+    const [votingCount, setVotingCount] = useState(0);
 
   
     const fetcher = (...args) => fetch(...args).then((res) => res.json())
@@ -120,7 +119,7 @@ export async function getStaticProps(staticProps) {
     useEffect(() => {
      
       if (data && data.length > 0) {
-        console.log('Data from SWR!', data);
+
         setCoffeeStore(data[0]);
 
         setVotingCount(data[0].votting); 
@@ -137,7 +136,7 @@ export async function getStaticProps(staticProps) {
     const handleUpvoteButton = async () => {    
       
         try {          
-          console.log("handle upvote");
+
           const response = await fetch('/api/favouriteCoffeeStoreById', {
             method: 'PUT',
             headers: {
@@ -149,7 +148,7 @@ export async function getStaticProps(staticProps) {
           });
           
           const dbCoffeeStore = response.json();
-          console.log("Update!!!!!!!!!!!!!!!", dbCoffeeStore);
+
           
           if (dbCoffeeStore  ) {
             let count = votingCount + 1;
