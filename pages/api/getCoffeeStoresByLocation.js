@@ -4,7 +4,7 @@ const getCoffeeStoresByLocation = async (req, res) => {
 
     try {
         const { latLong, limit } = req.query; 
-        console.log("req.query!!!!", latLong);
+
         const response = await fetchCoffeeStores(`${latLong}`, limit );
         res.status(200);
         res.json(response);
