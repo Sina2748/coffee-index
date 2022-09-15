@@ -125,7 +125,7 @@ export async function getStaticProps(staticProps) {
 
         setVotingCount(data[0].votting); 
       }
-
+  
     }, [data]);
 
     if (error) {
@@ -134,10 +134,38 @@ export async function getStaticProps(staticProps) {
       </div>
     }
 
-    const handleUpvoteButton = () => {
-      console.log("handle upvote");
-      let count = votingCount + 1;
-      setVotingCount(count);
+    const handleUpvoteButton = async () => {    
+      
+        try {          
+          console.log("handle upvote");
+          const response = await fetch('/api/favouriteCoffeeStoreById', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id,
+                }),
+          });
+          
+          const dbCoffeeStore = response.json();
+          console.log("Update!!!!!!!!!!!!!!!", dbCoffeeStore);
+          
+          if (dbCoffeeStore  ) {
+            let count = votingCount + 1;
+            setVotingCount(count);
+
+          }
+
+    
+        } catch(err) {
+          console.error('Error updating coffee store', err); 
+        }
+      
+
+
+
+
     };
 
     return ( 

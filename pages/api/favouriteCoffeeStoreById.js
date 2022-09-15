@@ -1,4 +1,4 @@
-import {  findRecordByFilter } from "../../lib/airtable";
+import { table, findRecordByFilter, getMinifiedRecords } from "../../lib/airtable";
 
 
 const favouriteCoffeeStoreById = async (req, res) => {
@@ -10,8 +10,30 @@ const favouriteCoffeeStoreById = async (req, res) => {
             if (id) {
                 const records = await findRecordByFilter(id);
 
-                if (records.length !== 0 ) {              
-                    res.json(records); 
+                if (records.length !== 0 ) {    
+                    const record = records[0]; 
+                    const calculateVoting = parseInt(record.votting) + 1;
+
+                
+
+                    // updateing
+                    const updateRecord = await table.update([
+                        {
+                            id: record.recordId,
+                            fields: {
+                                votting: calculateVoting
+                            }
+                        }
+
+                    ]);
+
+                    if (updateRecord) {
+                        const minifiedRecords = getMinifiedRecords(updateRecord)
+                        res.json(minifiedRecords); 
+
+                    }
+
+
                 } else {
                     res.json({ message: "thid dose not exist ", id });
                 }
