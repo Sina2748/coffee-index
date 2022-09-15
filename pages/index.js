@@ -10,34 +10,31 @@ import { fetchCoffeeStores } from '../lib/coffee-stores';
 
 import useTrackLocation from '../hooks/use-track-location';
 import { useEffect, useState, useContext } from 'react';
-import { ACTION_TYPES, StoreContext } from './_app';
-
-
-// 
+import { ACTION_TYPES, StoreContext } from '../store/store-context';
 
 
 
-//
+
+
 export async function getStaticProps(context) {
   const coffeeStores = await fetchCoffeeStores();
-  console.log({coffeeStores});
+
   return {
     props: {
       coffeeStores,
-    }, // will be passed to the page component as props
+    }, 
   }
 }
 
-//
 
-//
+
+
 export default function Home(props) {  
-  console.log("props from getStaticProps!!", props);
+
 
   const {handleTrackLocation, locationErrorMsg, inFindingLocation} = useTrackLocation();
-  // console.log({ latLong, locationErrorMsg, inFindingLocation});
 
-  // const [coffeeStores, setCoffeeStores] = useState('');
+
   const [storeError, setStoreError] = useState(null);
 
   const {dispatch, state } = useContext(StoreContext);
@@ -49,23 +46,26 @@ export default function Home(props) {
     async function fetchData() {
     if(latLong) {
       try{
-        const fetchCoffeeStoresV = await fetchCoffeeStores(latLong, 30);
-        console.log("coffee stores from fetchCoffeeStores!!", fetchCoffeeStoresV);
-        // setCoffeeStores(fetchCoffeeStoresV);
+        const response = await fetch(`/api/getCoffeeStoresByLocation?latLong=${latLong}&limit=30`);
+
+
+        const fetchCoffeeStoresV = await response.json();
+
         dispatch({
           type: ACTION_TYPES.SET_COFFEE_STORES,
           payload: {
             coffeeStores: fetchCoffeeStoresV,
           },
         })
-      }
-      catch(error) { 
+        setStoreError("");
+
+      } catch(error) { 
         // set error
         console.log({error});
         setStoreError(error.message);
       }
     }
-    console.log("kkkkk:",latLong);
+
   }
 
   fetchData();
@@ -74,7 +74,7 @@ export default function Home(props) {
 
 
   const handleOnClickBtnClick = () => {
-    console.log("hi banner button");
+
      
     handleTrackLocation();
   }  
