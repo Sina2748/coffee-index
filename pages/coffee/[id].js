@@ -15,7 +15,7 @@ import { isEmpty } from '../../utils';
 import useSWR from 'swr';
 
 
-//   THIS IS THE 10TH //
+//   THIS IS THE withTailwind //
 
 
 export async function getStaticPaths() {
