@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 
 import coffeeStoreData from '../../data/coffee-stores.json';
-import styles from '../../styles/coffe-store.module.css';
+
 import cls from 'classnames'; 
 
 import { fetchCoffeeStores } from '../../lib/coffee-stores';
@@ -170,19 +170,19 @@ export async function getStaticProps(staticProps) {
     };
 
     return ( 
-      <div className={styles.layout}>
+      <div className="">
         <Head>
           <title>{name}</title>
         </Head>
-        <div className={styles.container}>
-          <div className={styles.col1}>
-            <div className={styles.backToHomeLink}>
+        <div className="">
+          <div className="">
+            <div className="">
               <Link href="/">
                 <a>← Back to home</a>
               </Link>
             </div>
-            <div className={styles.nameWrapper}>
-              <h1 className={styles.name}>{name}</h1>
+            <div className="">
+              <h1 className="">{name}</h1>
             </div>
             <Image
               src={
@@ -191,28 +191,28 @@ export async function getStaticProps(staticProps) {
               }
               width={600}
               height={360}
-              className={styles.storeImg}
+              className=""
               alt={name}
             />
           </div>
-          <div className={cls("glass", styles.col2)}>
+          <div className="">
             {address && (
-              <div className={styles.iconWrapper}>
+              <div className="">
                 <Image src="/static/icons/places.svg" width="24" height="24" />
-                <p className={styles.text}>{address}</p>
+                <p className="">{address}</p>
               </div>
             )}
             {neighbourhood && (
-              <div className={styles.iconWrapper}>
+              <div className="">
                 <Image src="/static/icons/nearMe.svg" width="24" height="24" />
-                <p className={styles.text}>{neighbourhood}</p>
+                <p className="">{neighbourhood}</p>
               </div>
             )}
-            <div className={styles.iconWrapper}>
+            <div className="">
               <Image src="/static/icons/star.svg" width="24" height="24" />
-              <p className={styles.text}>{votingCount}</p>
+              <p className="">{votingCount}</p>
             </div>
-            <button className={styles.upvoteButton} onClick={handleUpvoteButton}>
+            <button className="" onClick={handleUpvoteButton}>
               Up vote!
             </button>
           </div>
