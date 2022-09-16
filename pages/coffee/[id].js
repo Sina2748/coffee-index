@@ -15,6 +15,8 @@ import { isEmpty } from '../../utils';
 import useSWR from 'swr';
 
 
+//   THIS IS THE 10TH //
+
 
 export async function getStaticPaths() {
     const coffeeStores = await fetchCoffeeStores();
