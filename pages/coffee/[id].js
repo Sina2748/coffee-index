@@ -116,7 +116,7 @@ export async function getStaticProps(staticProps) {
 
   
     const fetcher = (...args) => fetch(...args).then((res) => res.json())
-    const {data, error} = useSWR(`http://localhost:3000/api/getCoffeeStoreById?id=${id}`, fetcher);
+    const {data, error} = useSWR(`/api/getCoffeeStoreById?id=${id}`, fetcher);
 
     useEffect(() => {
      
