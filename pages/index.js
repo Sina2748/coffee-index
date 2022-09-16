@@ -101,8 +101,8 @@ export default function Home(props) {
 
         { coffeeStores.length > 0 && 
         <>
-        <h2 className={styles.hearding2}>Coffee Stores Near You:</h2>
-        <div className={styles.cardLayout}>
+        <h2 className="{styles.hearding2}">Coffee Stores Near You:</h2>
+        <div className="{styles.cardLayout}">
           {coffeeStores.map((coffeeStore) => {
               return  <Card key={coffeeStore.fsq_id} name={coffeeStore.name} imageUrl={coffeeStore.imgUrl} href={`/coffee/${coffeeStore.fsq_id}`} className={styles.card}/>
           })

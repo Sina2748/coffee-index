@@ -8,7 +8,7 @@ const Banner = (props) => {
             <span className="{styles.title2}">Connoisseur</span>
         </h1>
         <p className="{styles.subTitle}">Discover your local coffee shops!</p>
-        <button className="{styles.button}" onClick = {props.handleOnClick}>{props.buttonText}</button>
+        <button className="bg-gray-700" onClick = {props.handleOnClick}>{props.buttonText}</button>
     </div>
 }
 
