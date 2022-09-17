@@ -96,14 +96,14 @@ export default function Home(props) {
         {storeError && <p> Something went wrong: {storeError} </p>}
 
         <div className="">
-          <Image src="/static/hero-image.png" width={200} height={100}/>
+          {/* <Image src="/static/hero-image.png" width={200} height={100}/> */}
         </div>
 
         {/* if there was nearby coffee soters */}
         { coffeeStores.length > 0 && 
         <>
-        <h2 className="">Coffee Stores Near You:</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 p-12">
+        <h2 className="px-16 py-6 font-bold">Coffee Stores Near You:</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-12">
           {coffeeStores.map((coffeeStore) => {
               return  <Card 
               key={coffeeStore.fsq_id}
@@ -121,8 +121,8 @@ export default function Home(props) {
 
         { props.coffeeStores.length > 0 && 
         <>
-        <h2 className="">Torono Coffee Stores</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-5">
+        <h2 className="px-16 py-6 font-bold">Torono Coffee Stores:</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-12">
           {props.coffeeStores.map((coffeeStore) => {
               return  <Card 
               key={coffeeStore.fsq_id}
