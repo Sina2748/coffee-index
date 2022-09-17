@@ -19,7 +19,8 @@ const Banner = (props) => {
                     <div class="px-8 py-10 text-left " >
                         <div class="grid gap-8 items-start justify-center">
                             <div class="relative group">
-                            <div class="absolute -inset-0.5 bg-gradient-to-r from-stone-800 to-rose-900 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                            <div class="absolute -inset-0.5 bg-gradient-to-r from-stone-800 to-rose-900 rounded-lg blur opacity-75 
+                            group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
                             <button class="relative px-7 py-4 bg-white rounded-lg leading-none flex items-center divide-x divide-gray-600">
                                 <span class="flex items-center space-x-5">
 

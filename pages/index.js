@@ -12,6 +12,8 @@ import useTrackLocation from '../hooks/use-track-location';
 import { useEffect, useState, useContext } from 'react';
 import { ACTION_TYPES, StoreContext } from '../store/store-context';
 
+import video from "../public/video.webm";
+
 
 
 
@@ -87,7 +89,15 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="">            
+
+
+
+
+      <main className="">   
+
+
+      
+        
         <Banner 
         buttonText={inFindingLocation ? "Locating..." : "View Stores Nearby"} 
         handleOnClick={handleOnClickBtnClick}
@@ -139,7 +149,9 @@ export default function Home(props) {
       </main>      
 
       <footer className="">
-
+      <video autoplay muted loop controls id="myVideo">
+        <source src={video} type="video/webm" />
+      </video>
       </footer>
     </div>
   )
