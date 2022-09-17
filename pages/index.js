@@ -99,12 +99,18 @@ export default function Home(props) {
           <Image src="/static/hero-image.png" width={200} height={100}/>
         </div>
 
+        {/* if there was nearby coffee soters */}
         { coffeeStores.length > 0 && 
         <>
-        <h2 className="{styles.hearding2}">Coffee Stores Near You:</h2>
-        <div className="{styles.cardLayout}">
+        <h2 className="">Coffee Stores Near You:</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 p-12">
           {coffeeStores.map((coffeeStore) => {
-              return  <Card key={coffeeStore.fsq_id} name={coffeeStore.name} imageUrl={coffeeStore.imgUrl} href={`/coffee/${coffeeStore.fsq_id}`} className={styles.card}/>
+              return  <Card 
+              key={coffeeStore.fsq_id}
+              name={coffeeStore.name}
+              imageUrl={coffeeStore.imgUrl}
+              href={`/coffee/${coffeeStore.fsq_id}`}
+              className=""/>
           })
           }         
         </div>
@@ -116,9 +122,14 @@ export default function Home(props) {
         { props.coffeeStores.length > 0 && 
         <>
         <h2 className="">Torono Coffee Stores</h2>
-        <div className="">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-5">
           {props.coffeeStores.map((coffeeStore) => {
-              return  <Card key={coffeeStore.fsq_id} name={coffeeStore.name} imageUrl={coffeeStore.imgUrl} href={`/coffee/${coffeeStore.fsq_id}`} className=""/>
+              return  <Card 
+              key={coffeeStore.fsq_id}
+              name={coffeeStore.name} 
+              imageUrl={coffeeStore.imgUrl} 
+              href={`/coffee/${coffeeStore.fsq_id}`} 
+              className=""/>
           })
           }         
         </div>
