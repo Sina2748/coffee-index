@@ -102,18 +102,22 @@ export default function Home(props) {
         buttonText={inFindingLocation ? "Locating..." : "View Stores Nearby"} 
         handleOnClick={handleOnClickBtnClick}
                   />  
+
+        
         {locationErrorMsg && <p> Something went wrong: {locationErrorMsg} </p>}   
         {storeError && <p> Something went wrong: {storeError} </p>}
 
-        <div className="">
-          {/* <Image src="/static/hero-image.png" width={200} height={100}/> */}
-        </div>
+        <section className=" bg-red-300">
+          
+        
 
         {/* if there was nearby coffee soters */}
         { coffeeStores.length > 0 && 
         <>
-        <h2 className="px-16 py-6 font-bold">Coffee Stores Near You:</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-12">
+        <div className='bg-green-400'>
+          <h2 className="px-16 py-6 font-bold">Coffee Stores Near You:</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-12 py-3">
           {coffeeStores.map((coffeeStore) => {
               return  <Card 
               key={coffeeStore.fsq_id}
@@ -124,15 +128,21 @@ export default function Home(props) {
           })
           }         
         </div>
+        
         </>
+    
         }
 
 
 
         { props.coffeeStores.length > 0 && 
         <>
+        <div className='bg-green-400'>
         <h2 className="px-16 py-6 font-bold">Torono Coffee Stores:</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-12">
+          </div>
+
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-12 py-3">
           {props.coffeeStores.map((coffeeStore) => {
               return  <Card 
               key={coffeeStore.fsq_id}
@@ -146,6 +156,7 @@ export default function Home(props) {
         </>
         }
 
+        </section>
       </main>      
 
       <footer className="">

@@ -7,7 +7,7 @@ const Card = (props) => {
     return (
         <Link href={props.href}>
             <a className="
-            bg-gradient-to-r from-orange-100 bord
+            bg-gradient-to-bl from-orange-200 to-orange-300 bord
             p-2  rounded-lg flex border-2
             items-center justify-center drop-shadow-md 
             hover:drop-shadow-[0_15px_15px_rgba(50,100,0,0.75)] ">
