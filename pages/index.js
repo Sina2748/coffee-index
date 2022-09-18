@@ -115,10 +115,10 @@ export default function Home(props) {
         { coffeeStores.length > 0 && 
         <>
         <div className='bg-amber-100 drop-shadow-lg'>
-          <h2 className="px-16 py-6 font-bold">Coffee Stores Near You:</h2>
+          <h2 className="px-16 py-6 font-bold text-stone-700">Coffee Stores Near You:</h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-12 py-3
-        bg-gradient-to-b from-orange-200 via-orange-300-200 to-pink-100">
+        bg-gradient-to-b from-orange-200 via-orange-200 to-orange-100">
           {coffeeStores.map((coffeeStore) => {
               return  <Card 
               key={coffeeStore.fsq_id}
@@ -139,12 +139,12 @@ export default function Home(props) {
         { props.coffeeStores.length > 0 && 
         <>
         <div className='bg-amber-100 drop-shadow-lg'>
-            <h2 className="px-16 py-6 font-bold">Torono Coffee Stores:</h2>
+            <h2 className="px-16 py-6 font-bold text-stone-700">Torono Coffee Stores:</h2>
         </div>
 
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-12 py-3
-        bg-gradient-to-b from-orange-200 via-orange-300-200 to-pink-100
+        bg-gradient-to-b from-orange-200 via-orange-100 to-orange-100 
         ">
           {props.coffeeStores.map((coffeeStore) => {
               return  <Card 

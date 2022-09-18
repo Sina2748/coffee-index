@@ -10,7 +10,7 @@ const Card = (props) => {
             bg-gradient-to-bl from-orange-200 to-orange-300 bord
             p-2  rounded-lg flex border-2
             items-center justify-center drop-shadow-md 
-            hover:drop-shadow-[0_15px_15px_rgba(50,100,0,0.75)] ">
+            hover:drop-shadow-[0_15px_15px_rgba(123,52,30,0.55)]   transition duration-500 ">
             <div className="">
                 <div className="">
                     <h2 className="text-red-900 my-2 mx-1 "> {props.name}</h2>
