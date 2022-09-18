@@ -2,7 +2,7 @@
 
 
 const Banner = (props) => {
-    return <div className=" bg-red-100 text-center flex h-screen   ">
+    return <div className="text-center flex h-screen  bg-orange-200 bg-opacity-80  ">
                 <div className=" m-auto   ">
                     <h1 className="m-6 sm:m-12 text-left  ">
                         <span className="text-xl font-bold drop-shadow-lg	 ">The  </span><br/>
