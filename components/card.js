@@ -1,21 +1,23 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from './card.module.css';
-// import styles from "./banner.module.css";
-import cls from 'classnames';
+
  
  
 const Card = (props) => {
     return (
         <Link href={props.href}>
-            <a className={styles.cardLink}>
-            <div className={cls("glass", styles.container)}>
-                <div className={styles.cardHeaderWrapper}>
-                    <h2 className={styles.cardHeader}> {props.name}</h2>
+            <a className="
+            bg-gradient-to-bl from-orange-200 to-orange-300 bord
+            p-2  rounded-lg flex border-2
+            items-center justify-center drop-shadow-md 
+            hover:drop-shadow-[0_15px_15px_rgba(123,52,30,0.55)]   transition duration-500 ">
+            <div className="">
+                <div className="">
+                    <h2 className="text-red-900 my-2 mx-1 "> {props.name}</h2>
                 </div>
 
-                <div className={styles.cardImageWrapper}>
-                    <Image className={styles.cardImage} src={props.imageUrl} height={160} width={260} />
+                <div className=" ">
+                    <Image className="object-cover rounded-md" src={props.imageUrl} height={160} width={260} />
                 </div>
             </div>
             </a>
