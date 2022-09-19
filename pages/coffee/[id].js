@@ -174,48 +174,65 @@ export async function getStaticProps(staticProps) {
         <Head>
           <title>{name}</title>
         </Head>
-        <div className="">
-          <div className="">
-            <div className="">
-              <Link href="/">
+        <div className=" bg-hero bg-cover    grid h-screen place-items-center  ">
+        <div className='bg-orange-200 bg-opacity-80 h-screen w-screen absolute'></div>
+        <div className="bg-orange-100  sm:flex   m-3 
+
+            bg-gradient-to-bl from-orange-200 to-orange-300 bord
+            p-2  rounded-lg  border-2
+            items-start justify-center drop-shadow-md 
+            hover:drop-shadow-[0_15px_15px_rgba(123,52,30,0.55)]   transition duration-500
+        
+         ">
+          <div className="bg-white bg-opacity-30  grid rounded-b-2xl">
+            <div className="bg-red-900 bg-opacity-25 pl-3  font-bold text-stone-700">
+              <Link href="/" className="px-16 py-6 font-bold text-stone-700">
                 <a>← Back to home</a>
               </Link>
             </div>
+
             <div className="">
-              <h1 className="">{name}</h1>
+              <h1 className="py-6 pl-8">{name}</h1>
             </div>
             <Image
+            className="rounded-2xl "
               src={
                 imgUrl ||
                 "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
               }
               width={600}
               height={360}
-              className=""
+              
               alt={name}
             />
           </div>
-          <div className="">
+
+
+          <div className=" bg-white bg-opacity-30 mt-3 sm:ml-3 sm:mt-0 sm:w-3/4 ">
             {address && (
-              <div className="">
-                <Image src="/static/icons/places.svg" width="24" height="24" />
+              <div className="flex space-x-5 p-3">
+                <Image src="/static/icons/places.svg" width="24" height="24" className='opacity-60' />
                 <p className="">{address}</p>
               </div>
             )}
             {neighbourhood && (
-              <div className="">
-                <Image src="/static/icons/nearMe.svg" width="24" height="24" />
+              <div className="flex space-x-5 p-3">
+                <Image src="/static/icons/nearMe.svg" width="24" height="24" className='opacity-60' />
                 <p className="">{neighbourhood}</p>
               </div>
             )}
-            <div className="">
-              <Image src="/static/icons/star.svg" width="24" height="24" />
+            <div className="flex space-x-5 p-3">
+              <Image src="/static/icons/star.svg" width="24" height="24" className='opacity-60' />
               <p className="">{votingCount}</p>
-            </div>
-            <button className="" onClick={handleUpvoteButton}>
-              Up vote!
+            
+            <button className="bg-orange-300 px-6 py-0.5 rounded-lg
+            hover:drop-shadow-[0_2px_2px_rgba(123,52,30,0.55)] transition duration-500
+            " onClick={handleUpvoteButton}>
+              Up Vote!
             </button>
+            </div>
           </div>
+        </div>
         </div>
       </div>
     );

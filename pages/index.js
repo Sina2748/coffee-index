@@ -18,6 +18,8 @@ import { ACTION_TYPES, StoreContext } from '../store/store-context';
 
 
 
+
+
 export async function getStaticProps(context) {
   const coffeeStores = await fetchCoffeeStores();
 
