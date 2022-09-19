@@ -192,7 +192,7 @@ export async function getStaticProps(staticProps) {
             </div>
 
             <div className="">
-              <h1 className="py-6 pl-8">{name}</h1>
+              <h1 className="py-6 pl-8 text-lg">{name}</h1>
             </div>
             <Image
             className="rounded-2xl "
