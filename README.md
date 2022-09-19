@@ -1,5 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Coffee Index
+
+This is a website built with Next.js and Tailwind. By using ForeSquer and
+Unsplash API the website enables users to find the coffee stores in their location.
+You can visit https://coffee-index.vercel.app/ for a live demo.
+
+
 ## Getting Started
 
 First, run the development server:
